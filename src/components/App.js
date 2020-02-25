@@ -1,14 +1,13 @@
+import React, { Component } from 'react';
+import "../css/App.scss";
+import Navigation from './Navigation';
 
-import React from 'react';
-import "../css/App.scss"
-
-function App() {
-  return (
-    <div className="App">
-      <h1>My React App</h1>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div className="app">
+        <Navigation />
+      </div>
+    )
+  }
 }
-
-
-export default App;
