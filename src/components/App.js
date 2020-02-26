@@ -18,6 +18,18 @@ export default class App extends Component {
       ]
     }
   }
+
+  updateItem = (id) => {
+    const newState = this.state.items.map(item => {
+      if (item.id === id) {
+        item.done = !item.done
+        return item
+      } else {
+        return
+      }
+    })
+  }
+
   render() {
     const toDos = this.state.items.filter(el => !el.done)
     const toDones = this.state.items.filter(el => el.done)
