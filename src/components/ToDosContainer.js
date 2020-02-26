@@ -4,7 +4,7 @@ import ToDoItem from "./ToDoItem"
 export default function ToDosContainer(props) {
     const todos = props.items
     const toDoItems = todos.map(el => {
-        return (<ToDoItem item={el} key={el.text} />)
+        return (<ToDoItem item={el} key={el.text} updateItem={props.updateItem} />)
     })
     return (
         <div className="todos-container">

@@ -25,9 +25,10 @@ export default class App extends Component {
         item.done = !item.done
         return item
       } else {
-        return
+        return item
       }
     })
+    this.setState({ items: newState })
   }
 
   render() {
@@ -36,8 +37,8 @@ export default class App extends Component {
     return (
       <div className="app">
         <Navigation />
-        <ToDosContainer items={toDos} />
-        <ToDonesContainer items={toDones} />
+        <ToDosContainer items={toDos} updateItem={this.updateItem} />
+        <ToDonesContainer items={toDones} updateItem={this.updateItem} />
       </div>
     )
   }
