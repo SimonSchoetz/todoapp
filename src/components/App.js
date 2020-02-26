@@ -9,12 +9,12 @@ export default class App extends Component {
     super(props)
     this.state = {
       items: [
-        { text: "Make the best snare", done: true },
-        { text: "Fletcher the sub", done: false },
-        { text: "Check for peakybois", done: false },
-        { text: "Mono your Sub", done: false },
-        { text: "Compress your side signal", done: false },
-        { text: "Be innovative", done: true }
+        { id: 0, text: "Make the best snare", done: true },
+        { id: 1, text: "Fletcher the sub", done: false },
+        { id: 2, text: "Check for peakybois", done: false },
+        { id: 3, text: "Mono your Sub", done: false },
+        { id: 4, text: "Compress your side signal", done: false },
+        { id: 5, text: "Be innovative", done: true }
       ]
     }
   }
