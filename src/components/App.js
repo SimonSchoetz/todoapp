@@ -18,8 +18,7 @@ export default class App extends Component {
       ]
     }
   }
-
-  updateItem = (id) => {
+  updateItem = id => {
     const newState = this.state.items.map(item => {
       if (item.id === id) {
         item.done = !item.done
@@ -31,13 +30,21 @@ export default class App extends Component {
     this.setState({ items: newState })
   }
 
+
+  addItem = (newItem) => {
+    let item = ({ id: this.state.items.length, text: newItem, done: false })
+    this.setState({
+      items: [...this.state.items, item]
+    })
+  }
+
   render() {
     const toDos = this.state.items.filter(el => !el.done)
     const toDones = this.state.items.filter(el => el.done)
     return (
       <div className="app">
         <Navigation />
-        <ToDosContainer items={toDos} updateItem={this.updateItem} />
+        <ToDosContainer items={toDos} updateItem={this.updateItem} addItem={this.addItem} />
         <ToDonesContainer items={toDones} updateItem={this.updateItem} />
       </div>
     )
