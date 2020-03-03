@@ -3,7 +3,7 @@ import ToDoneItem from "./ToDoneItem"
 
 export default function ToDonesContainer(props) {
     const todones = props.items
-    const toDoneItems = todones.map(el => {
+    const toDoneItems = todones && todones.map(el => {
         return (<ToDoneItem item={el} key={el.text} updateItem={props.updateItem} />)
     })
 

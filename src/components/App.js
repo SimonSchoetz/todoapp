@@ -8,16 +8,18 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [
-        { id: 0, text: "Make the best snare", done: true },
-        { id: 1, text: "Fletcher the sub", done: false },
-        { id: 2, text: "Check for peakybois", done: false },
-        { id: 3, text: "Mono your Sub", done: false },
-        { id: 4, text: "Compress your side signal", done: false },
-        { id: 5, text: "Be innovative", done: true }
-      ]
+      items: []
     }
   }
+
+  componentDidMount() {
+    let data = localStorage.getItem("todo-list")
+    let items = JSON.parse(data)
+    if (items) {
+      this.setState({ items }) //because "let items" has the same name as this.state.items, React knows it is the same as items: items
+    }
+  }
+
   updateItem = id => {
     const newState = this.state.items.map(item => {
       if (item.id === id) {
@@ -27,20 +29,29 @@ export default class App extends Component {
         return item
       }
     })
-    this.setState({ items: newState })
-  }
-
-
-  addItem = (newItem) => {
-    let item = ({ id: this.state.items.length, text: newItem, done: false })
-    this.setState({
-      items: [...this.state.items, item]
+    this.setState({ items: newState }, () => {
+      this.updateLocalStorage()
     })
   }
 
+  addItem = (newItem) => {
+    let item = ({ id: this.state.items.length, text: newItem, done: false })
+    this.setState({ //this.setState is asynchronous code....
+      items: [...this.state.items, item]
+    }, () => { //... thats why we use this way to execute the code after this.setState is done
+
+      this.updateLocalStorage()
+    })
+
+  }
+
+  updateLocalStorage = () => {
+    localStorage.setItem("todo-list", JSON.stringify(this.state.items))
+  }
+
   render() {
-    const toDos = this.state.items.filter(el => !el.done)
-    const toDones = this.state.items.filter(el => el.done)
+    const toDos = this.state.items && this.state.items.filter(el => !el.done)
+    const toDones = this.state.items && this.state.items.filter(el => el.done)
     return (
       <div className="app">
         <Navigation />

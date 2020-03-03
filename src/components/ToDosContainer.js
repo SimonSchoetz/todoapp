@@ -31,7 +31,7 @@ export default class ToDosContainer extends Component {
 
     render() {
         const todos = this.props.items
-        const toDoItems = todos.map(el => {
+        const toDoItems = todos && todos.map(el => {
             return (<ToDoItem item={el} key={el.text} updateItem={this.props.updateItem} />)
         })
         return (
